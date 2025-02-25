@@ -26,14 +26,14 @@
 % TexMaker-Kommando für bib(la)tex: "biber" %
 % (Original-Einstellung für bibtex: "bibtex" %.aux
 
-\addbibresource{ExposeQuellen.bib}
+% \addbibresource{ExposeQuellen.bib}
 
 %---------------------------------
 % Meta Variables
 %---------------------------------
 \newcommand{\MetaInstitute}{Hochschule Bremen}
 \newcommand{\MetaUnit}{Fakultät 4 \@- Elektrotechnik und Informatik}
-\newcommand{\MetaTitle}{Analyse und Implementierung verscheiedener Persistenzmethoden für Webanwendungen}
+\newcommand{\MetaTitle}{Analyse und Implementierung einer geeigneten Persistenzmethode für eine Webanwendung mit Live-Updates}
 \newcommand{\MetaSubtitle}{Eine Untersuchung auf Datenschutz, Nachhaltigkeit und Performance}
 \newcommand{\MetaTask}{Exposé}
 \newcommand{\MetaAuthorName}{Marvin Uwe}
@@ -59,15 +59,17 @@
 %---------------------------------
 % Hyperref (sollte unbedingt vor geometry-Paket geladen werden)
 % für Anzeige in Acrobat (pdfstartview)
-\usepackage[bookmarks=false,
-pdfstartview=FitV,
-pdfhighlight={/I},
-colorlinks = true,
-linkcolor = blue,
-urlcolor  = blue,
-citecolor = blue,
-pdfborder={0 0 0},
-german]{hyperref}
+\usepackage[
+    bookmarks=false,
+    pdfstartview=FitV,
+    pdfhighlight={/I},
+    colorlinks = true,
+    linkcolor = blue,
+    urlcolor  = blue,
+    citecolor = blue,
+    pdfborder={0 0 0},
+    german
+]{hyperref}
 
 \hypersetup{
 	pdfauthor   = {\MetaAuthor},
@@ -125,7 +127,7 @@ german]{hyperref}
 %---------------------------------
 \usepackage[headsepline]{scrlayer-scrpage}
 
-\clearpairofpagestyles
+\clearpairofpagestyles{}
 \automark[section]{section}	% Anzeige der "section" in der Kopfzeile
 \lohead{\headmark}
 \cofoot[\pagemark]{\pagemark} % Anzeige der Seitenzahl in der Fußzeile
@@ -207,7 +209,7 @@ german]{hyperref}
 % Commands
 %---------------------------------
 \newcommand{\HRule}{\rule{\linewidth}{0.2mm}}	% Horizontal line for title page
-\newcommand{\qto}[1]{\glqq #1\grqq}				% Anführungszeichen
+\newcommand{\qto}[1]{\glqq{} #1\grqq{}}			% Anführungszeichen
 
 \newcommand{\urlMitUmlauten}[2]{\texttt{\href{#1}{#2}}}				% URL mit Umlauten
 
@@ -229,8 +231,8 @@ german]{hyperref}
 	% Titlepage
 	%---------------------------------
 	\begin{titlepage}
-		\shortdate % Use Short Date
-		\center % Center everything on the page
+		\shortdate{} % Use Short Date
+		\center{} % Center everything on the page
 		
 		~\\[1cm]
 		
@@ -265,13 +267,13 @@ german]{hyperref}
 		%		\par
 		%	}
 		%	\HRule \\[1.5cm]
-		\HRule \\[0.5cm]
+		\HRule{} \\[0.5cm]
 		{
-			\LARGE \bfseries \MetaTitle \\[0.50cm] % Title of your document
+			\LARGE{} \bfseries{} \MetaTitle{} \\[0.50cm] % Title of your document
 			\LARGE \bfseries -- \MetaSubtitle\ -- \\[0.50cm] % Title of your document
 			\par
 		}
-		\HRule \\[1.5cm]
+		\HRule{} \\[1.5cm]
 		
 		%---------------------------------
 		% AUTHOR SECTION
@@ -296,8 +298,8 @@ german]{hyperref}
 	%---------------------------------
 	\section{Einleitung}
 
-	In der Welt der Videospiele und erweiterten Realitätsanwendungen (XR) stellen die steigende Komplexität und die Anforderungen an die Treffererkennung eine Herausforderung dar. Traditionelle CPU-basierte Methoden stoßen zunehmend an ihre Grenzen, was die Systemperformance und die Spielerfahrung beeinträchtigt. Diese Arbeit erforscht die Möglichkeit, die Treffererkennung durch den Einsatz von Raytracing-Kernen auf GPUs zu realisieren, um die Präzision zu steigern und die CPU-Last zu verringern.
-	
+    
+
 	\pagebreak
 	
 	%---------------------------------
@@ -310,11 +312,7 @@ german]{hyperref}
 	%---------------------------------
 	\subsection{Problemstellung}
 	
-	Die Problematik der Treffererkennung in interaktiven Echtzeit-Umgebungen verschärft sich mit der zunehmenden Komplexität von Spielwelten und der fortlaufenden Entwicklung realistischerer 3D-Modelle. Die CPU ist in einer modernen Spiel-Engine oft mit mehreren Aufgaben belastet, einschließlich KI-Steuerung, Spiellogik und der Verwaltung von Benutzerinputs, wodurch die Ressourcen für die Treffererkennung limitiert sind. 
-	
-	Die traditionelle Hit-Scan-Methode, die auf der CPU ausgeführt wird, stößt bei der Skalierung auf Grenzen. Typischerweise werden Hitboxes in Form von Quadern, Sphären und Kapseln zur Vereinfachung des 3D-Modells verwendet. Der Strahl von seinem Startpunkt in die gegebene Richtung projiziert. Trifft der Strahl auf eine Hitbox, wird die Berechnung beendet und Trefferinformationen zurückgegeben. Alternativ kann das 3D-Modell selber als Hitbox fungieren, allerdings mit deutlich erhöhtem Rechenaufwand. 
-	
-	Dies führt zu einem Dilemma: Die Erhöhung der Präzision der Treffererkennung verlangt mehr Rechenzeit, was wiederum die Bildwiederholrate und damit die Immersion und Interaktion beeinträchtigen kann.
+
 
 	%\bigskip
 	%\noindent
@@ -324,35 +322,13 @@ german]{hyperref}
 	%%---------------------------------
 	\subsection{Lösungsansatz}
 		
-	Im Rahmen der Arbeit wird das Hit-Scan-Verfahren auf die GPU verlagert, um die Rechenleistung der spezialisierten Raytracing-Kerne moderner Grafikkarten zu nutzen. Diese Anpassung zielt darauf ab, die Geschwindigkeit und Präzision der Treffererkennung zu steigern, während gleichzeitig die Belastung der CPU reduziert wird.
-	
-	Die Verlagerung des GPU-basierten Hit-Scan-Verfahrens soll mit der Vulkan-API, speziell Vulkan Ray Queries, realisiert werden. Ray Queries ermöglichen den Einsatz der Raytracing-Kerne außerhalb von Rendering-Shadern. Sie können für beliebige Zwecke benutzt werden. So auch für Treffererkennung.\footnote{\url{https://www.khronos.org/blog/ray-tracing-in-vulkan/\#blog\_Ray\_Queries}}
-	
-	Mehrere Testszenen mit variierender Anzahl von statischen 3D Modellen, bewegend und stehend, sollen der Evaluierung dienen: Durch Vergleichen der Performance des Verfahrens auf der GPU mit dem bestehenden CPU-basierten Ansatz in Unreal Engine 5\footnote{\url{https://www.unrealengine.com/en-US/unreal-engine-5}} wird überprüft, ob die GPU-Implementierung eine schnellere Verarbeitung ermöglicht. Dieser Vergleich soll die Vorteile der GPU-Nutzung für Echtzeit-Treffererkennung in interaktiven Anwendungen verdeutlichen. Der GPU-basierte Ansatz wird in einer zuvor eigens entwickelten Rendering-Engine verwirklicht.
+
 
 	\pagebreak
 	
 	\section{Literaturübersicht}
 	
-	Diese Übersicht an Literatur beschreibt Grundlagen und aktuellen Stand zu Raytracing, Echtzeit-Kollisionsdetektion, Vulkan sowie die Verwendung von Vulkan Ray Queries und Compute Shader. 
-	
-	\begin{itemize}
-	\item \textbf{RTX on—The NVIDIA Turing GPU}\cite{Burgess2020} John Burgess beschreibt die Architektur der NVIDIA Turing GPU und ihre neuen Features wie RT Cores und Tensor Cores, die speziell für Raytracing und Deep Learning entwickelt wurden. Der Artikel beleuchtet die technischen Details und die Leistungsfähigkeit dieser GPU-Generation.
-	
-	\item \textbf{Mastering Graphics Programming with Vulkan}\cite{Castorina2023} In diesem Buch von Marco Castorina wird die Programmierung von Grafikanwendungen mit Vulkan von Grund auf erläutert. Es behandelt zudem Ray Queries.
-	
-	\item \textbf{Introduction to Compute Shaders}\cite{Chajdas2018} Matthäus G. Chajdas bietet in diesem Artikel eine Einführung in Compute Shader. Er erklärt die Grundlagen, Anwendungsgebiete und die Implementierung von Compute Shadern.
-	
-	\item \textbf{Real-Time Collision Detection}\cite{Ericson2004} Christer Ericsons Buch ist ein umfassendes Werk zur Echtzeit-Kollisionserkennung. Es bietet theoretische Grundlagen und praktische Implementierungstechniken für effiziente Kollisionserkennung in Spielen und Simulationen.
-	
-	\item \textbf{NVIDIA TURING GPU ARCHITECTURE}\cite{Corporation2018} Dieses Whitepaper beschreibt die Turing GPU-Architektur, die erstmals Echtzeit-Raytracing in Hardware ermöglicht. Es werden die neuen RT Cores und Tensor Cores sowie ihre Anwendungen in Grafik und Deep Learning detailliert erläutert.
-	
-	\item \textbf{Ray Tracing Gems II}\cite{Marrs2021} Shirley et al. kompilierten eine Sammlung von Artikeln zur nächsten Generation des Raytracings mit DXR, Vulkan und OptiX. Behandelt werden fortschrittliche Techniken und Optimierungen für hochqualitatives und Echtzeit-Rendering sowie Grundlagen zu Raytracing
-	
-	\item \textbf{vk\_mini\_path\_tracer}\cite{Bickford} Neil Bickford beschreibt in seinem Tutorial detailliert eine Implementation eines Path-Tracers mithilfe von Vulkan Ray Queries.
-	\end{itemize}
-
-	
+    
 	
 	\pagebreak
 	
@@ -365,35 +341,27 @@ german]{hyperref}
 	\noindent
 	Hardware:
 	\begin{itemize}
-		\item CPU - AMD Ryzen 9 7900X
-		\item GPU - Nvidia RTX 4070
+		\item 
 	\end{itemize}
 	\medskip
 	\noindent
 	Implementationstools:
 	\begin{itemize}
-		\item Microsoft Visual Studio 2022 - C++ Entwicklungsumgebung
-		\begin{itemize}
-			\item Microsoft Visual C++ Compiler
-			\item C++ 20 Standard
-		\end{itemize}
-		\item NVIDIA Nsight Graphics - GPU-Debugging
-		\item Unreal Engine 5 - Game-Engine
+		\item 
 	\end{itemize}
 	
 	\medskip
 	\noindent
 	Software-Bibliotheken:
 	\begin{itemize}
-		\item Eigens erstelle Vulkan Rendering-Engine
+		\item 
 	\end{itemize}
 	
 	\medskip
 	\noindent
 	Versionsverwaltung:
 	\begin{itemize}
-		\item Git - Versionskontrollsoftware
-		\item Fork - Grafische Benutzeroberfläche für Git 
+		\item Git \@- Versionskontrollsoftware
 	\end{itemize}
 	
 	\pagebreak
@@ -420,76 +388,17 @@ german]{hyperref}
 		\end{gliederung}
 		
 		\item Grundlagen
-		\begin{gliederung}
-			\item 3D-Meshes
-			\begin{gliederung}
-				\item Static Meshes
-				\item Skeletal Meshes
-			\end{gliederung}
-			\item Kollisionserkennung/Treffererkennung % TODO: Welches?
-			\begin{gliederung}
-				\item Bounding-Boxes
-				\item Treffererkennungs-Algorithmus
-			\end{gliederung}
-			\item Raytracing
-			% TODO: Subkategorie von RT oder eigene? Lieber rausnehmen und in Konzept?
-			\begin{gliederung}
-				\item Hit-Scan Verfahren
-			\end{gliederung}
-			\item Hardware-Raytracing
-			\item Bounding Volume Hierarchies
-			\item GPU-Architektur
-			\begin{gliederung}
-				\item Scheduler
-				\item Compute Units
-				\item Pipeline
-			\end{gliederung}
-			\item GPU<->CPU Kommunikation
-			\begin{gliederung}
-				\item PCI-Express
-			\end{gliederung}
-			\item Render-Hardware-Interface
-			\begin{gliederung}
-				\item Vulkan
-				\begin{gliederung}
-					\item Pipeline
-					\item Queue
-					\item Commandbuffer
-					\item Meshbuffer
-					\item Compute Shader
-				\end{gliederung}
-			\end{gliederung}
-		\end{gliederung}
 		
 		\item Verwandte Arbeiten
 		
 		\item Konzeption
-		\begin{gliederung}
-			\item Hardware-Raytracing
-			\begin{gliederung}
-				\item 3D-Mesh Format
-				\item Mesh Collection
-				\item Bottom-Level Acceleration-Structure
-				\item Top-Level Acceleration Structure
-				\item Compute Shader
-				\item Performance Measuring
-				\item Testszenen
-			\end{gliederung}
-			\item Zusammenfassung
-		\end{gliederung}
 		
 		\item Prototypische Realisierung
 		\begin{gliederung}
 			\item Wahl der Realisierungsplattform
 			\item Festlegung des Realisierungsumfangs
 			\item Ausgewählte Realisierungsaspekte
-			\begin{gliederung}
-				\item Mesh Collection
-				\item Bottom-Level Acceleration-Structure
-				\item Top-Level Acceleration Structure
-				\item Compute Shader
-				\item Testszenen
-			\end{gliederung}
+			
 			\item Qualitätssicherung
 			\item Zusammenfassung
 		\end{gliederung}
@@ -518,10 +427,10 @@ german]{hyperref}
 	\section{Zeitplanung}
 	
 	Geplanter Starttermin: 
-	25. Juni 2024
+	XX.03.2025
 	
 	\noindent
-	Bearbeitungsdauer: 9 Wochen
+	Bearbeitungsdauer: X Wochen
 	
 	\noindent
 	\cref{tab:zeitplanung} stellt die geplanten Arbeitspakete und Meilensteine dar:
@@ -535,54 +444,45 @@ german]{hyperref}
 		%\setlength{\extrarowheight}{5pt}%
 		\begin{tabular}{|c|p{10cm}|c|}
 			
-			\hline 
+			\hline
 			%%%%%%
-			M1 & Offizieller Beginn der Arbeit & 25.06.2024  \\ 
+			M1 & Offizieller Beginn der Arbeit & XX.03.2025  \\ 
 			\hline
 			& \tabitem Verfassen von Kapitel 1 (Einleitung) & 1 Woche \\ 
 			\hline
 			%%%%%%
-			M2 & Recherche \& Grundlagen & 02.07.2024  \\ 
+			M2 & Recherche \& Grundlagen & XX.03.2025  \\ 
 			\hline
-			& \tabitem Recherche (Hardware-)Raytracing & \multirowcell{5}{2 Wochen} \\ 
-			& \tabitem Recherche Treffererkennung & \\
-			& \tabitem Recherche Vulkan \& Compute Shader & \\
-			%\cline{2-2}
-			& \tabitem Verfassen von Kapitel 2 (Grundlagen) & \\ 
-			& \tabitem Verfassen von Kapitel 3 (Verwandte Arbeiten) & \\ 
+			& \tabitem Recherche & \\
 			\hline
 			%%%%%%
-			M3 & Konzeption & 16.07.2024  \\ 
+			M3 & Konzeption & XX.03.2025  \\ 
 			\hline
-			& \tabitem Entwurf des Renderers und Raytracing-Shaders & \multirowcell{3}{2 Wochen} \\ 
-			& \tabitem Entwurf der Testszenen & \\
+			& \tabitem Konzeption & \\
 			%\cline{2-2}
 			& \tabitem Verfassen von Kapitel 4 (Konzeption) & \\ 
 			\hline
 			%%%%%%
-			M4 & Implementation Prototyp & 30.07.2024 \\ 
+			M4 & Implementation Prototyp & XX.04.2025 \\
 			\hline
-			& \tabitem IDE Einrichten & \multirowcell{5}{2 Wochen} \\ 
-			& \tabitem C++ Implementation & \\ 
-			& \tabitem Profiling & \\ 
-			& \tabitem Testszenenaufbau und Profiling & \\
+			& \tabitem Prototypische Implementierung & \\
 			%\cline{2-2}
 			& \tabitem Verfassen von Kapitel 5 (Prototypische Realisierung) & \\ 
 			\hline
 			%%%%%%
-			M5 & Evaluation & 13.08.2024 \\ 
+			M5 & Evaluation & XX.04.2025 \\ 
 			\hline
 			& \tabitem Verfassen von Kapitel 6 (Evaluation) & \multirowcell{2}{1 Woche} \\ 
 			& \tabitem Verfassen von Kapitel 7 (Zusammenfassung \& Ausblick) & \\ 
 			\hline
-			M6 & Erste Fassung vollständige Thesis & 20.08.2024  \\ 
+			M6 & Erste Fassung vollständige Thesis & XX.04.2025  \\ 
 			\hline
 			& \tabitem Korrekturlesen & \multirowcell{2}{1 Woche} \\ 
 			%\cline{2-2}
 			& \tabitem Drucken \& binden lassen & \\ 
 			\hline
 			%%%%%%
-			M7 & Abgabe der Thesis & 27.08.2024  \\ 
+			M7 & Abgabe der Thesis & XX.05.2025  \\ 
 			\hline
 			
 		\end{tabular} 
@@ -602,9 +502,9 @@ german]{hyperref}
 	%\printbibliography	
 	
 	% Literaturliste getrennt in Papier- und Online-Quellen:
-	\printbibheading
-	\printbibliography[nottype=online, heading=subbibliography, title={Gedruckte Quellen}]
-	\printbibliography[type=online, heading=subbibliography, title={Online-Quellen}]
+	% \printbibheading{}
+	% \printbibliography[nottype=online, heading=subbibliography, title={Gedruckte Quellen}]
+	% \printbibliography[type=online, heading=subbibliography, title={Online-Quellen}]
 	
 	
 \end{document}
