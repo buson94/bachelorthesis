@@ -1,20 +1,11 @@
 \documentclass[11pt]{scrartcl}
 
-%---------------------------------
-% Sprache, Schriften, Zeichensatz
-%---------------------------------
 \usepackage[ngerman]{babel}
-
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-
 \usepackage{csquotes}	% für babel
 
-%---------------------------------
-% Datum/Zeit
-%---------------------------------
 \usepackage[ngerman]{datetime}
-
 \newdateformat{germandate}{\THEDAY. \monthname[\THEMONTH] \THEYEAR}
 
 %---------------------------------
@@ -28,9 +19,6 @@
 
 % \addbibresource{ExposeQuellen.bib}
 
-%---------------------------------
-% Meta Variables
-%---------------------------------
 \newcommand{\MetaInstitute}{Hochschule Bremen}
 \newcommand{\MetaUnit}{Fakultät 4 \@- Elektrotechnik und Informatik}
 \newcommand{\MetaTitle}{Analyse und Implementierung einer geeigneten Persistenz-Methode für ein Planspiel mit Mehrspielermöglichkeit}
@@ -74,7 +62,6 @@
 \hypersetup{
 	pdfauthor   = {\MetaAuthor},
 	pdftitle    = {\MetaTitle},
-	% pdfsubject  = {\MetaUnit, \MetaTask},
 	pdfsubject  = {\MetaTask},
 	pdfkeywords = {\MetaTitle, \MetaUnit, \MetaInstitute},
 	% pdfkeywords = {\MetaTitle, \MetaUnit, \MetaTask, \MetaInstitute},
@@ -87,10 +74,6 @@
 \crefname{subsection}{Abschnitt}{Abschnitte}
 \crefname{lstlisting}{Listing}{Listing} % neue Typbezeichnung
 
-
-%---------------------------------
-% Grafiken, Farben
-%---------------------------------
 \usepackage{graphicx}
 \graphicspath{ {figures/} }
 
@@ -103,7 +86,6 @@
 
 \definecolor{note}{rgb}{1,1,0.8}		% Farbe für Notizen
 
-
 %---------------------------------
 % Seitenlayout: Abmessungen
 %---------------------------------
@@ -114,7 +96,6 @@
 
 \setlength{\parindent}{6mm} 
 \setlength{\parskip}{0.2cm} 
-
 
 % Raum für Notizen mit note-Paket
 %\usepackage[top=3.6cm,bottom=4.5cm,right=4cm,bindingoffset=0.5cm,twoside]{geometry}
@@ -135,13 +116,11 @@
 
 %\pagestyle{empty}
 
-
 %---------------------------------
 % Seitenlayout: Überschriften
 %---------------------------------
 \addtokomafont{subsubsection}{\normalfont\sffamily}	% subsubsection nicht bold
 \addtokomafont{paragraph}{\normalfont\sffamily}	% paragraph nicht bold
-
 
 %---------------------------------
 % Enumeration mit Zahlen auf allen Ebenen (für Gliederung)
@@ -151,12 +130,7 @@
 \newlist{gliederung}{enumerate}{4}
 \setlist[gliederung]{label*=\arabic*.}
 
-
-%---------------------------------
-% Listings
-%---------------------------------
 \usepackage{listings}
-
 \lstset{
 	language=Python,
 	basicstyle=\ttfamily,
@@ -174,12 +148,10 @@
 	numbers=left
 }
 
-
 %---------------------------------
 % To Do Notes
 %---------------------------------
 \usepackage[textwidth=3.5cm, backgroundcolor=note]{todonotes}
-
 
 %---------------------------------
 % Tabellen
@@ -191,10 +163,6 @@
 
 \newcommand{\tabitem}{~~\llap{\textbullet}~~}
 
-
-%---------------------------------
-% Floating environments genauer positionieren
-%---------------------------------
 \usepackage{float}
 
 %---------------------------------
@@ -210,7 +178,6 @@
 %---------------------------------
 \newcommand{\HRule}{\rule{\linewidth}{0.2mm}}	% Horizontal line for title page
 \newcommand{\qto}[1]{\glqq{} #1\grqq{}}			% Anführungszeichen
-
 \newcommand{\urlMitUmlauten}[2]{\texttt{\href{#1}{#2}}}				% URL mit Umlauten
 
 % Abkürzungen (mit korrekten Abständen)
@@ -221,24 +188,12 @@
 \newcommand{\evtl}{evtl.\xspace}
 \newcommand{\bzw}{bzw.\xspace}
 
-
-%---------------------------------
-% Document start
-%---------------------------------
 \begin{document}
-	
-	%---------------------------------
-	% Titlepage
-	%---------------------------------
 	\begin{titlepage}
-		\shortdate{} % Use Short Date
-		\center{} % Center everything on the page
+		\shortdate{}
+		\center{}
 		
 		~\\[1cm]
-		
-		%---------------------------------
-		% HEADER SECTIONS
-		%---------------------------------
 		
 		\begin{figure}[h!]
 			\centering
@@ -248,54 +203,31 @@
 		\end{figure}
 		
 		\vspace{-0.5cm}
-		\textsc{\Large \MetaInstitute}\\[0.2cm] % Major heading such as course name
-		\textsc{\Large \MetaUnit}%[2.5cm] % Major heading such as course name
+		\textsc{\Large \MetaInstitute}\\[0.2cm]
+		\textsc{\Large \MetaUnit}
 		
 		\textsc{\large \MetaStudyProgram}\\[1.5cm]
 		
-		%---------------------------------
-		% DOCUMENT TYPE SECTION
-		%---------------------------------
-		\textsc{\LARGE \MetaTask}\\[1.5cm] % Minor heading such as course title
+		\textsc{\LARGE \MetaTask}\\[1.5cm]
 		
-		%---------------------------------
-		% TITLE SECTION
-		%---------------------------------
-		%	\HRule \\[0.5cm]
-		%	{
-		%		\LARGE \bfseries \MetaTitle \\[0.50cm] % Title of your document
-		%		\par
-		%	}
-		%	\HRule \\[1.5cm]
 		\HRule{} \\[0.5cm]
 		{
-			\LARGE{} \bfseries{} \MetaTitle{} \\[0.50cm] % Title of your document
-			\LARGE \bfseries -- \MetaSubtitle\ -- \\[0.50cm] % Title of your document
+			\LARGE{} \bfseries{} \MetaTitle{} \\[0.50cm]
+			\LARGE \bfseries -- \MetaSubtitle\ -- \\[0.50cm]
 			\par
 		}
 		\HRule{} \\[1.5cm]
 		
-		%---------------------------------
-		% AUTHOR SECTION
-		%---------------------------------
 		\large 
 		\MetaAuthor\ (\MetaStudentNumber)\\
 		%\MetaCoAuthor\\[0.25cm]
 		
-		%---------------------------------
-		% DATE SECTION
-		%---------------------------------
 		\vspace*{\fill}
 		{
 			\large \MetaDate\ (Version \MetaVersion)
 		}
 	\end{titlepage}
 
-
-
-	%---------------------------------
-	% EINLEITUNG
-	%---------------------------------
 	\section{Einleitung}
 
     2023 wurde ein Planspiel zum Thema Diversität in Unternehmen entwickelt. Dieses gewann im November 2023 zwei Preise bei der Diversity Challenge, einem Wettbewerb, welcher von dem Charta der Vielfalt e.V. organisiert wird. Dort noch in Form eines physischen Kartenspiels, begann man im Anschluss zum Wettbewerb mit der Entwicklung einer digitalen Variante in Form einer Webanwendung. Die Anwendung ist mittlerweile in einem Status, in dem man das Spiel bereits vollwertig durchführen kann. Bisher ist es aber nur allein aus der Sicht des Spielleiters spielbar und der Fortschritt der Sitzung geht nach Verbindungsverlust verloren. In dieser Arbeit sollen verschiedene Methodiken untersucht werden, wie man den Verlust des Fortschritts durch eine persistente Speicherung der Sitzungsdaten verhindert. Dabei werden folgende Aspekte untersucht:
@@ -308,24 +240,12 @@
 
 	\pagebreak
 	
-	%---------------------------------
-	% PROBLEMSTELLUNG UND LÖSUNGSANSATZ
-	%---------------------------------
 	\section{\label{sec:problem_loesung}Problemstellung und Lösungsansatz}
 
-	%---------------------------------
-	% PROBLEMSTELLUNG
-	%---------------------------------
 	\subsection{Problemstellung}
 	
 
 
-	%\bigskip
-	%\noindent
-	
-	%%---------------------------------
-	%% LÖSUNGSANSATZ
-	%%---------------------------------
 	\subsection{Lösungsansatz}
 		
 
@@ -338,9 +258,6 @@
 	
 	\pagebreak
 	
-	%---------------------------------
-	% TOOLS
-	%---------------------------------
 	\section{Tools}
 
 	\medskip
@@ -372,9 +289,6 @@
 	
 	\pagebreak
 	
-	%---------------------------------
-	% VORLÄUFIGE GLIEDERUNG
-	%---------------------------------
 	\section{\label{sec:gliederung}Vorläufige Gliederung}
 	
 	Nachfolgend die vorläufige Gliederung der Thesis. Es gilt zu beachten, dass vor allem die prototypische Realisierung sich radikal von der Planung unterscheiden kann.
@@ -426,9 +340,6 @@
 	{\parindent=5mm
 		Literaturverzeichnis}%\\[0.25cm]
 
-	%---------------------------------
-	% ZEITRAHMEN
-	%---------------------------------
 	\pagebreak
 	\section{Zeitplanung}
 	
@@ -494,7 +405,6 @@
 		\end{tabular} 
 	\end{table}
 	
-	
 	%---------------------------------
 	% LITERATUR
 	%---------------------------------
@@ -503,7 +413,6 @@
 	%\bibliographystyle{plain}
 	%\bibliography{literatur}
 	
-	
 	% Gesamte Literaturliste
 	%\printbibliography	
 	
@@ -511,6 +420,5 @@
 	% \printbibheading{}
 	% \printbibliography[nottype=online, heading=subbibliography, title={Gedruckte Quellen}]
 	% \printbibliography[type=online, heading=subbibliography, title={Online-Quellen}]
-	
 	
 \end{document}
