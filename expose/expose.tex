@@ -226,7 +226,7 @@
 
 	\section{Einleitung}
 
-    2023 wurde ein Planspiel zum Thema Diversität in Unternehmen entwickelt. Dieses gewann im November 2023 zwei Preise bei der Diversity Challenge, einem Wettbewerb, welcher von dem Charta der Vielfalt e.V. organisiert wird. Dort noch in Form eines physischen Kartenspiels, begann man im Anschluss zum Wettbewerb mit der Entwicklung einer digitalen Variante in Form einer Webanwendung. Die Anwendung ist mittlerweile in einem Status, in dem man das Spiel bereits vollwertig durchführen kann. Bisher ist es aber nur allein aus der Sicht des Spielleiters spielbar und der Fortschritt der Sitzung geht nach Verbindungsverlust verloren. In dieser Arbeit sollen verschiedene Methodiken untersucht werden, wie man den Verlust des Fortschritts durch eine persistente Speicherung der Sitzungsdaten verhindert. Dabei werden folgende Aspekte untersucht:
+    2023 wurde ein Planspiel zum Thema Diversität in Unternehmen entwickelt. Dieses gewann im November 2023 zwei Preise bei der Diversity Challenge, einem Wettbewerb, welcher von dem Charta der Vielfalt e. V. organisiert wird. Dort noch in Form eines physischen Kartenspiels, begann man im Anschluss zum Wettbewerb mit der Entwicklung einer digitalen Variante in Form einer Webanwendung. Die Anwendung ist mittlerweile in einem Status, in dem man das Spiel bereits vollwertig durchführen kann. Bisher ist es aber nur allein aus der Sicht des Spielleiters spielbar und der Fortschritt der Sitzung geht nach Verbindungsverlust verloren. In dieser Arbeit sollen verschiedene Methodiken untersucht werden, wie man den Verlust des Fortschritts durch eine persistente Speicherung der Sitzungsdaten verhindert. Dabei werden folgende Aspekte untersucht:
     
     \begin{itemize}
         \item Nachhaltigkeit: energieeffiziente, kompakte Datenstruktur
@@ -240,10 +240,12 @@
 
 	\subsection{Problemstellung}
 	
-    
+    In der Entwicklung moderner Webanwendungen stellt die effiziente und persistente Speicherung von Nutzerdaten eine Herausforderung dar. Die Wahl einer geeigneten Persistenz-Methode beeinflusst maßgeblich die Performance, Skalierbarkeit und Benutzererfahrung der Anwendung. Noch mehr kommt dies zum Tragen, wenn, wie durch die geplante Mehrspielerfunktion des Planspiels, Live-Updates der Daten durchgeführt werden müssen. 
+
+    Ein Mehrspielerspiel erfordert eine Datenhaltung, die schnelle Lese- und Schreibzugriffe ermöglicht, um Echtzeitinteraktionen zwischen Spielern zu unterstützen. Gleichzeitig müssen Persistenz-Lösungen sicherstellen, dass Spielstände zuverlässig gespeichert und bei Unterbrechungen korrekt wiederhergestellt werden können. Herkömmliche Methoden, die nur darauf ausgelegt sind, die Interaktionen eines einzelnen Nutzers zu speichern, reichen hier nicht aus. Um eine gute Nachhaltigkeit zu erreichen, sollte aber auch vermieden werden große Datenmengen zu verarbeiten, wie \zB die gesamte Spielsitzung bei allen Spielern nach jeder Interaktion neuzuladen.
     
 	\subsection{Lösungsansatz}
-		
+
 
 
 	\pagebreak
