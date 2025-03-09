@@ -246,7 +246,9 @@
     
 	\subsection{Lösungsansatz}
 
+    Die Spielsitzung wird derzeit als reine JSON-Datei geladen und könnte so auch wieder auf dem Server gespeichert werden. Dies bietet aber keinerlei Datenschutz, da die Dateien öffentlich abrufbar wären. Dennoch kann diese Methode erstmal als Vergleichsgrundlage dienen. Dann wird die Datenstruktur in relationale Datenbanken (z. B. PostgreSQL, MySQL) und NoSQL-Ansätzen (z. B. MongoDB, Redis) erneut umgesetzt und verglichen. 
 
+    Verglichen werden Ladezeiten, Datengrößen und Energieverbrauch. Zum Erheben der Metriken werden Google Chrome DevTools genutzt. Dort können unter anderem im Reiter ``Netzwerk'' die Ladezeiten und Datengrößen gemessen werden.    
 
 	\pagebreak
 	
@@ -262,20 +264,22 @@
 	\noindent
 	Hardware:
 	\begin{itemize}
-		\item 
+		\item Notebook \@- Lenovo ThinkPad P15v Gen 1
+        \item CPU \@- Intel Core i7\@-10875H
+        \item RAM \@- 64GB DDR4
 	\end{itemize}
 	\medskip
 	\noindent
 	Implementationstools:
 	\begin{itemize}
-		\item 
+		\item JetBrains WebStorm Entwiklungsumgebung
 	\end{itemize}
 	
 	\medskip
 	\noindent
 	Software-Bibliotheken:
 	\begin{itemize}
-		\item 
+		\item Angular
 	\end{itemize}
 	
 	\medskip
