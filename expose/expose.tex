@@ -52,9 +52,9 @@
     pdfstartview=FitV,
     pdfhighlight={/I},
     colorlinks = true,
-    linkcolor = blue,
-    urlcolor  = blue,
-    citecolor = blue,
+    linkcolor = black,
+    urlcolor  = black,
+    citecolor = black,
     pdfborder={0 0 0},
     german
 ]{hyperref}
@@ -226,7 +226,7 @@
 
 	\section{Einleitung}
 
-    2023 wurde ein Planspiel zum Thema Diversität in Unternehmen entwickelt. Dieses gewann im November 2023 zwei Preise bei der Diversity Challenge, einem Wettbewerb, welcher von dem Charta der Vielfalt e. V. organisiert wird. Dort noch in Form eines physischen Kartenspiels, begann man im Anschluss zum Wettbewerb mit der Entwicklung einer digitalen Variante in Form einer Webanwendung. Die Anwendung ist mittlerweile in einem Status, in dem man das Spiel bereits vollwertig durchführen kann. Bisher ist es aber nur allein aus der Sicht des Spielleiters spielbar und der Fortschritt der Sitzung geht nach Verbindungsverlust verloren. In dieser Arbeit sollen verschiedene Methodiken untersucht werden, wie man den Verlust des Fortschritts durch eine persistente Speicherung der Sitzungsdaten verhindert. Dabei werden folgende Aspekte untersucht:
+    2023 wurde ein Planspiel zum Thema ``Diversität in Unternehmen'' entwickelt. Dieses gewann im November 2023 zwei Preise bei der \textit{Diversity Challenge}, einem Wettbewerb, welcher von dem Charta der Vielfalt e. V. organisiert wird. Dort noch in Form eines physischen Kartenspiels, begann man im Anschluss zum Wettbewerb mit der Entwicklung einer digitalen Variante in Form einer Webanwendung. Die Anwendung ist mittlerweile auf einem vollwertig durchführbaren Stand. Bisher ist es aber nur allein aus der Sicht des Spielleiters spielbar und der Fortschritt der Sitzung geht nach Verbindungsverlust verloren. In dieser Arbeit sollen verschiedene Methodiken untersucht werden, mit denen man den Fortschrittsverlust durch eine persistente Speicherung der Sitzungsdaten verhindert. Dabei werden folgende Aspekte untersucht:
     
     \begin{itemize}
         \item Nachhaltigkeit: energieeffiziente, kompakte Datenstruktur
@@ -240,13 +240,14 @@
 
 	\subsection{Problemstellung}
 	
-    In der Entwicklung moderner Webanwendungen stellt die effiziente und persistente Speicherung von Nutzerdaten eine Herausforderung dar. Die Wahl einer geeigneten Persistenz-Methode beeinflusst maßgeblich die Performance, Skalierbarkeit und Benutzererfahrung der Anwendung. Noch mehr kommt dies zum Tragen, wenn, wie durch die geplante Mehrspielerfunktion des Planspiels, Live-Updates der Daten durchgeführt werden müssen. 
+    In der Entwicklung moderner Webanwendungen stellt die effiziente und persistente Speicherung von Nutzerdaten eine Herausforderung dar. Die Wahl einer geeigneten Persistenz-Methode beeinflusst maßgeblich die Performance, Skalierbarkeit und Benutzererfahrung der Anwendung. Dies kommt durch die geplante Mehrspielerfunktion umso mehr zum Tragen, da Live-Updates der Daten durchgeführt werden müssen.
 
-    Ein Mehrspielerspiel erfordert eine Datenhaltung, die schnelle Lese- und Schreibzugriffe ermöglicht, um Echtzeitinteraktionen zwischen Spielern zu unterstützen. Gleichzeitig müssen Persistenz-Lösungen sicherstellen, dass Spielstände zuverlässig gespeichert und bei Unterbrechungen korrekt wiederhergestellt werden können. Herkömmliche Methoden, die nur darauf ausgelegt sind, die Interaktionen eines einzelnen Nutzers zu speichern, reichen hier nicht aus. Um eine gute Nachhaltigkeit zu erreichen, sollte aber auch vermieden werden große Datenmengen zu verarbeiten, wie \zB die gesamte Spielsitzung bei allen Spielern nach jeder Interaktion neuzuladen.
+    Ein Mehrspielerspiel erfordert eine Datenhaltung, die schnelle Lese- und Schreibzugriffe ermöglicht, um Echtzeitinteraktionen zwischen Spielern zu unterstützen. Gleichzeitig müssen Persistenz-Lösungen sicherstellen, dass Spielstände zuverlässig gespeichert und bei Unterbrechungen korrekt wiederhergestellt werden können. Herkömmliche Methoden, die nur darauf ausgelegt sind, die Interaktionen eines einzelnen Nutzers zu speichern, reichen hier nicht aus. Um eine gute Nachhaltigkeit zu erreichen, sollten zudem auch große Datenverarbeitungen vermieden werden, wie \zB die gesamte Spielsitzung bei allen Spielern nach jeder Interaktion zu aktualisieren.
+
     
 	\subsection{Lösungsansatz}
 
-    Die Spielsitzung wird derzeit als reine JSON-Datei geladen und könnte so auch wieder auf dem Server gespeichert werden. Dies bietet aber keinerlei Datenschutz, da die Dateien öffentlich abrufbar wären. Dennoch kann diese Methode zu Beginn als Vergleichsgrundlage dienen. Danach wird die Datenstruktur in relationale Datenbanken (basierend auf SQLite (?)), nicht-relationale Datenbanken (basierend auf MongoDB (?)) und (vielleicht?) einer hybriden Version erneut umgesetzt und verglichen. % TODO: Delete ? when decided on database tech
+    Die Spielsitzung wird derzeit als reine JSON\footnote{JavaScript Object Notation}-Datei geladen und könnte so auch wieder auf dem Server gespeichert werden. Dies bietet aber keinerlei Datenschutz, da die Dateien in dieser Form, ohne benötigten Login, vollständig öffentlich abrufbar wären. Im Gegenzug dazu ist es bei einer Datenbank üblich, nur Teile davon über eine API\footnote{Application Programming Interface}, unter vorherigem Login, zur Verfügung zu stellen. Dennoch kann diese Methode zu Beginn als Vergleichsgrundlage dienen. Danach wird die Datenstruktur in relationale Datenbanken (basierend auf SQLite (?)), nicht-relationale Datenbanken (basierend auf MongoDB (?)) und (vielleicht?) einer hybriden Version erneut umgesetzt und verglichen. % TODO: Delete ? when decided on database tech
 
     Verglichen werden Ladezeiten, Datengrößen und Energieverbrauch. Zum Erheben der Metriken werden Google Chrome DevTools genutzt. Dort können unter anderem im Reiter ``Netzwerk'' die Ladezeiten und Datengrößen gemessen werden. (Tool zum Messen des Energieverbrauchs finden und definieren) % TODO: Replace brackets with defined energy analytic tool
 
