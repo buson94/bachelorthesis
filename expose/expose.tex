@@ -17,7 +17,7 @@
 % TexMaker-Kommando für bib(la)tex: "biber" %
 % (Original-Einstellung für bibtex: "bibtex" %.aux
 
-% \addbibresource{ExposeQuellen.bib}
+\addbibresource{expose-quellen.bib}
 
 \newcommand{\MetaInstitute}{Hochschule Bremen}
 \newcommand{\MetaUnit}{Fakultät 4 \@- Elektrotechnik und Informatik}
@@ -255,7 +255,9 @@
 	
 	\section{Literaturübersicht}
 	
-    
+    \begin{itemize}
+        \item \textbf{Angular 16 Dokumentation}\cite{Angular16} In dieser Dokumentation wird das vom Planspiel genutzte Framework Angular 16 erklärt.
+    \end{itemize} 
 	
 	\pagebreak
 	
@@ -425,6 +427,7 @@
 		\end{tabular} 
 	\end{table}
 	
+	\pagebreak
 	%---------------------------------
 	% LITERATUR
 	%---------------------------------
@@ -434,11 +437,11 @@
 	%\bibliography{literatur}
 	
 	% Gesamte Literaturliste
-	%\printbibliography	
-	
+	%\printbibliography
+
 	% Literaturliste getrennt in Papier- und Online-Quellen:
-	% \printbibheading{}
-	% \printbibliography[nottype=online, heading=subbibliography, title={Gedruckte Quellen}]
-	% \printbibliography[type=online, heading=subbibliography, title={Online-Quellen}]
+	\printbibheading{}
+	\printbibliography[nottype=online, heading=subbibliography, title={Gedruckte Quellen}]
+	\printbibliography[type=online, heading=subbibliography, title={Online-Quellen}]
 	
 \end{document}
