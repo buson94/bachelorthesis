@@ -226,12 +226,12 @@
 
 	\section{Einleitung}
 
-    2023 wurde ein Planspiel zum Thema ``Diversität in Unternehmen'' entwickelt. Dieses gewann im November 2023 zwei Preise bei der \textit{Diversity Challenge}, einem Wettbewerb, welcher von dem Charta der Vielfalt e. V. organisiert wird. Dort noch in Form eines physischen Kartenspiels, begann man im Anschluss zum Wettbewerb mit der Entwicklung einer digitalen Variante in Form einer Webanwendung. Die Anwendung ist mittlerweile auf einem vollwertig durchführbaren Stand. Bisher ist es aber nur allein aus der Sicht des Spielleiters spielbar und der Fortschritt der Sitzung geht nach Verbindungsverlust verloren. In dieser Arbeit sollen verschiedene Methodiken untersucht werden, mit denen man den Fortschrittsverlust durch eine persistente Speicherung der Sitzungsdaten verhindert. Dabei werden folgende Aspekte untersucht:
+    2023 wurde ein Planspiel zum Thema ``Diversität in Unternehmen'' entwickelt. Dieses gewann im November 2023 zwei Preise bei der \textit{Diversity Challenge}, einem Wettbewerb, welcher von dem Charta der Vielfalt e. V. organisiert wird. Dort noch in Form eines physischen Kartenspiels, begann man im Anschluss zum Wettbewerb mit der Entwicklung einer digitalen Variante in Form einer Webanwendung. Die Anwendung ist mittlerweile auf einem vollwertig durchführbaren Stand. Bisher ist es aber nur allein aus der Sicht des Spielleiters spielbar und der Fortschritt der Sitzung geht nach Verbindungsverlust verloren. In dieser Arbeit soll der Fortschrittsverlust durch persistente Speicherung der Sitzungsdaten behoben werden. Dabei wird untersucht, wie die Persistenz möglichst nachhaltig gestaltet werden kann. Folgende Fragen werden hierbei behandelt:
     
     \begin{itemize}
-        \item Nachhaltigkeit: energieeffiziente, kompakte Datenstruktur
-        \item Performance: schnelle und fehlerfreie Ladegeschwindigkeit
-        \item Datenschutz: verhindern unbefugten Zugriffs und Festlegung der Speicherdauer
+        \item Wie beeinflusst die Wahl der Persistenz-Technologie (relationale vs. NoSQL-Datenbanken) die Performance und Skalierbarkeit des Planspiels?
+        \item Welche Herausforderungen treten bei der Persistenz von Echtzeitdaten auf (in Bezug einer späteren Mehrspielerfunktion)?
+        \item Wie kann die Persistenz in dem Planspiel ressourcenschonend und energieeffizient gestaltet werden?
     \end{itemize}
 
 	\pagebreak
