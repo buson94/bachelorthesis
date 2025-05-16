@@ -226,13 +226,7 @@
 
 	\section{Einleitung}
 
-    2023 wurde ein Planspiel zum Thema ``Diversität in Unternehmen'' entwickelt. Dieses gewann im November 2023 zwei Preise bei der \textit{Diversity Challenge}, einem Wettbewerb, welcher von dem Charta der Vielfalt e. V. organisiert wird. Dort noch in Form eines physischen Kartenspiels, begann man im Anschluss zum Wettbewerb mit der Entwicklung einer digitalen Variante in Form einer Webanwendung. Die Anwendung ist mittlerweile auf einem vollwertig durchführbaren Stand. Bisher ist es aber nur allein aus der Sicht des Spielleiters spielbar und der Fortschritt der Sitzung geht nach Verbindungsverlust verloren. In dieser Arbeit soll der Fortschrittsverlust durch persistente Speicherung der Sitzungsdaten behoben werden. Dabei wird untersucht, wie die Persistenz möglichst nachhaltig gestaltet werden kann. Folgende Fragen werden hierbei behandelt:
-    
-    \begin{itemize}
-        \item Wie beeinflusst die Wahl der Persistenz-Technologie (relationale vs. NoSQL-Datenbanken) die Performance und Skalierbarkeit des Planspiels?
-        \item Welche Herausforderungen treten bei der Persistenz von Echtzeitdaten auf (in Bezug einer späteren Mehrspielerfunktion)?
-        \item Wie kann die Persistenz in dem Planspiel ressourcenschonend und energieeffizient gestaltet werden?
-    \end{itemize}
+    2023 wurde ein Planspiel zum Thema ``Diversität in Unternehmen'' entwickelt. Dieses gewann im November 2023 zwei Preise bei der \textit{Diversity Challenge}, einem Wettbewerb, welcher von dem Charta der Vielfalt e. V. organisiert wird. Dort noch in Form eines physischen Kartenspiels, begann man im Anschluss zum Wettbewerb mit der Entwicklung einer digitalen Variante in Form einer Webanwendung. Die Anwendung ist mittlerweile auf einem vollwertig durchführbaren Stand. Bisher ist es aber nur allein aus der Sicht des Spielleiters spielbar und der Fortschritt der Sitzung geht nach Verbindungsverlust verloren. In dieser Arbeit soll der Fortschrittsverlust durch persistente Speicherung der Sitzungsdaten behoben werden. Dabei wird untersucht, wie die Persistenz möglichst nachhaltig gestaltet werden kann.
 
 	\pagebreak
 	
@@ -240,10 +234,15 @@
 
 	\subsection{Problemstellung}
 	
-    In der Entwicklung moderner Webanwendungen stellt die effiziente und persistente Speicherung von Nutzerdaten eine Herausforderung dar. Die Wahl einer geeigneten Persistenz-Methode beeinflusst maßgeblich die Performance, Skalierbarkeit und Benutzererfahrung der Anwendung. Dies kommt durch die geplante Mehrspielerfunktion umso mehr zum Tragen, da Live-Updates der Daten durchgeführt werden müssen.
+    In der Entwicklung moderner Webanwendungen ist die Suche nach einer geeigneten Methodik zur effizienten Speicherung von Nutzerdaten immer wieder eine Herausforderung. Die Wahl der Persistenz-Methode beeinflusst maßgeblich die Performance, Skalierbarkeit und Benutzererfahrung der Anwendung, aber auch dessen Nachhaltigkeit. Dies kommt durch die geplante Mehrspielerfunktion umso mehr zum Tragen, da Live-Updates der Daten durchgeführt werden müssen.
 
-    Ein Mehrspielerspiel erfordert eine Datenhaltung, die schnelle Lese- und Schreibzugriffe ermöglicht, um Echtzeitinteraktionen zwischen Spielern zu unterstützen. Gleichzeitig müssen Persistenz-Lösungen sicherstellen, dass Spielstände zuverlässig gespeichert und bei Unterbrechungen korrekt wiederhergestellt werden können. Herkömmliche Methoden, die nur darauf ausgelegt sind, die Interaktionen eines einzelnen Nutzers zu speichern, reichen hier nicht aus. Um eine gute Nachhaltigkeit zu erreichen, sollten zudem auch große Datenverarbeitungen vermieden werden, wie \zB die gesamte Spielsitzung bei allen Spielern nach jeder Interaktion zu aktualisieren.
-
+    Ein Mehrspielerspiel erfordert eine Datenhaltung, die schnelle Lese- und Schreibzugriffe ermöglicht, um Echtzeitinteraktionen zwischen Spielern zu unterstützen. Gleichzeitig müssen Persistenz-Lösungen sicherstellen, dass Spielstände zuverlässig gespeichert und bei Unterbrechungen korrekt wiederhergestellt werden können. Herkömmliche Methoden, die nur darauf ausgelegt sind, die Interaktionen eines einzelnen Nutzers zu speichern, reichen hier nicht aus. Um eine gute Nachhaltigkeit zu erreichen, sollten zudem auch große Datenverarbeitungen vermieden werden, wie \zB die gesamte Spielsitzung bei allen Spielern nach jeder Interaktion zu aktualisieren. Folgende Leitfragen (ab hier als \textit{LF} abgekürzt) werden hierbei gestellt und im Laufe der Arbeit behandelt:
+    
+    \begin{enumerate}[label=\textbf{LF\arabic*}]
+        \item\label{frage:1} Wie beeinflusst die Wahl der Persistenz-Technologie (relationale gegenüber nicht-relationalen Datenbanken) die Performance und Skalierbarkeit des Planspiels?
+        \item\label{frage:2} Welche Herausforderungen treten bei der Persistenz von Echtzeitdaten auf (in Bezug einer späteren Mehrspielerfunktion)?
+        \item\label{frage:3} Wie kann die Persistenz in dem Planspiel ressourcenschonend und energieeffizient gestaltet werden?
+    \end{enumerate}
     
 	\subsection{Lösungsansatz}
 
