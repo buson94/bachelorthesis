@@ -247,13 +247,7 @@
     
 	\subsection{Lösungsansatz}
 
-    Eine simple Lösung wäre zu bestimmten Zeitpunkten den aktuellen Spielstand wieder mit demselben Aufbau der zwei JSON-Dateien, zu speichern, sodass diese beim Verlassen und Wiedereinstieg in das Planspiel anstelle der originalen Dateien direkt geladen werden können. Dabei ist es wichtig zu entscheiden, ob diese auf dem Server oder lokal beim Spieler gespeichert wird. Auf dem Server wäre ohne eine Implementation einer Sitzungsverwaltung nur eine Sitzung zurzeit möglich, dafür wäre der aktuelle Stand von allen Spielern jederzeit abrufbar. Lokal bei dem Spieler zu speichern, hätte den Vorteil, dass keine Sitzungsverwaltung benötigt wird, da beim Aufrufen des Planspiels ein eigener Aufbau geladen wird. Der Nachteil wäre, dass andere Spieler keinen Zugriff auf den Spielstand des anderen haben und somit das Spiel nur in Form einer Einzelspielererfahrung bzw. als Präsentation des Spielleiters genutzt werden kann. Alternativ wäre auch eine hybride Variante möglich, sodass auf beiden Seiten der Spielstand gespeichert wird und man so nur noch die Unterschiede zum Spielstand auf dem Server aktualisieren muss.
-    
-    Um die Möglichkeit einer Mehrspielerfunktion zu bewahren, sollte eine Spielsitzung auf einem Server erfolgen. Dabei kann man Entweder den Webserver nutzen, auf dem auch das Planspiel läuft oder über Technologien wie Peer-to-Peer \zB den Spielleiter als Server definieren. 
-    
-    Dies bietet aber keinerlei Datenschutz, da die Dateien in dieser Form, ohne benötigten Login, vollständig öffentlich abrufbar wären. Im Gegenzug dazu ist es bei einer Datenbank üblich, nur Teile davon über eine API\footnote{Application Programming Interface}, unter vorherigem Login, zur Verfügung zu stellen. Dennoch kann diese Methode zu Beginn als Vergleichsgrundlage dienen. Danach wird die Datenstruktur in relationale Datenbanken (basierend auf SQLite (?)), nicht-relationale Datenbanken (basierend auf MongoDB (?)) und (vielleicht?) einer hybriden Version erneut umgesetzt und verglichen. % TODO: Delete ? when decided on database tech
-
-    Verglichen werden Ladezeiten, Datengrößen und Energieverbrauch. Zum Erheben der Metriken werden Google Chrome DevTools genutzt. Dort können unter anderem im Reiter ``Netzwerk'' die Ladezeiten und Datengrößen gemessen werden. (Tool zum Messen des Energieverbrauchs finden und definieren) % TODO: Replace brackets with defined energy analytic tool
+    Bisher wurde die Spielsitzung aus einer JSON\footnote{JavaScript Object Notation}-Datei geladen, Änderungen im LocalStorage gespeichert und aus diesem bei Neuverbindung wieder geladen. Diese Art der Persistenz bietet keine Möglichkeit einer Mehrspielerfunktion, da Änderungen nur im Speicher desjenigen Nutzers vorhanden sind. Daher sollen die Daten auf dem Server gespeichert und über eine API bereitgestellt werden.
 
 	\pagebreak
 	
