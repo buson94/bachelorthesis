@@ -227,7 +227,7 @@
 
 	\section{Einleitung}
 
-    2023 wurde ein Planspiel zum Thema ``Diversität in Unternehmen'' entwickelt. Dieses gewann im November 2023 zwei Preise bei der \textit{Diversity Challenge}, einem Wettbewerb, welcher von dem Charta der Vielfalt e. V. organisiert wird. Dort noch in Form eines physischen Kartenspiels, begann man im Anschluss zum Wettbewerb mit der Entwicklung einer digitalen Variante in Form einer Webanwendung. Die Anwendung ist mittlerweile auf einem vollwertig durchführbaren Stand. Bisher ist es aber nur allein aus der Sicht des Spielleiters spielbar und der Fortschritt der Sitzung geht nach Verbindungsverlust verloren. In dieser Arbeit soll der Fortschrittsverlust durch persistente Speicherung der Sitzungsdaten behoben werden. Dabei wird untersucht, wie die Persistenz möglichst nachhaltig gestaltet werden kann.
+    Im Rahmen eines Wettbewerbs zum Thema ``Diversität in Unternehmen'' wurde 2023 ein Planspiel entwickelt. Dort noch in Form eines physischen Kartenspiels, begann man im Anschluss zum Wettbewerb mit der Entwicklung einer digitalen Variante in Form einer Webanwendung. Die Anwendung ist mittlerweile auf einem vollwertig durchführbaren Stand. Bisher ist es aber nur allein aus der Sicht des Spielleiters spielbar. In dieser Arbeit soll, die derzeit noch vereinfachte persistente Speicherung der Sitzungsdaten überarbeitet und für eine Mehrspielerfunktion vorbereitet werden. Dabei wird untersucht, wie die Persistenz möglichst nachhaltig gestaltet werden kann.
 
 	\pagebreak
 	
@@ -248,6 +248,12 @@
 	\subsection{Lösungsansatz}
 
     Bisher wurde die Spielsitzung aus einer JSON\footnote{JavaScript Object Notation}-Datei geladen, Änderungen im LocalStorage gespeichert und aus diesem bei Neuverbindung wieder geladen. Diese Art der Persistenz bietet keine Möglichkeit einer Mehrspielerfunktion, da Änderungen nur im Speicher desjenigen Nutzers vorhanden sind. Daher sollen die Daten auf dem Server gespeichert und über eine API bereitgestellt werden.
+
+    \subsubsection{\ref{frage:1}: Skalierbare Technologie}
+
+    \subsubsection{\ref{frage:2}: Performante Technologie}
+
+    \subsubsection{\ref{frage:3}: Nachhaltige Technologie}
 
 	\pagebreak
 	
